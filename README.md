@@ -23,7 +23,7 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 
 <hr>
 
-#### How-to.
+#### How-To.
 
 - Download all the files to the local in a single subfolder.
 - Customize the setting in `opt.m`, such as 
@@ -38,7 +38,8 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 - The main function also provide the `gs=GlobalSearch` method which has been tested. It will compute the same result. No local minima problem.
 - The main function also provide a `svd(J{i})` method to compute the optimal lambda for each optimzation step.
 - The data shall be smoothed before the implementation to the real motors, because the intially computed cable actuations are sometimes jumpy which are only suitable for simulation. You can play around with the data with the `smoothdata()` function (`'sgolay'` is recommanded).
-
+- The `.mlx` files are the live scripts. They compute the decoupled solution in a symbolic way.
+- The image processing code is provided as `depth_cam_obsv.m`. It computes the 3D cooridinate of the POIs using a RealSense D435 depth camera.
 
 
   
