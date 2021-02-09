@@ -6,7 +6,7 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 <hr>
 
 #### Cite as
-- Jiewen Lai (2021). A MATLAB Simulator: Constrained Motion Planning of A Cable-Driven Soft Robot with Non-Constant Curvature Modeling. Github address.<br>
+- Jiewen Lai (2021). A MATLAB Simulator: Constrained Motion Planning of A Cable-Driven Soft Robot with Non-Constant Curvature Modeling. https://github.com/samlaipolyu/ncc_motion_planning.<br>
 - Jiewen Lai, Qingxiang Zhao, and Henry K. Chu. "paper title," Journal Name. vol. xx. no. x. pp. xxxx-xxxx. 2021.
 
 <hr>
