@@ -250,7 +250,7 @@ while j <= length(x)
         L = 1:1:50; % mm
         K_A = 0.8550; % K_A = EA/L = 0.8*pi*(4.5^2-1.8^2)/50 = 0.8550 N/mm
         I = (pi/4)*(4.5^4-1.8^4); % 313.8175 mm^4
-        K_B = 5.0211;  % 0.8*313.8175/50 (EI/l=-M/theta_B) Nmmrad-1 // 0.8MPA
+        % K_B = 5.0211;  % 0.8*313.8175/50 (EI/l=-M/theta_B) Nmmrad-1 // 0.8MPA
         r = 3.15;
         eta = 1;
         
@@ -259,24 +259,26 @@ while j <= length(x)
         ds_1 = (f_11 + f_12 + f_13) + ((f_21 + f_22 + f_23))/(3*K_A);
         s_1 = L + ds_1;
         
-        s_1_store = [s_1_store; s_1(end)];
-        s_2_store = [s_2_store; s_2(end)];
-        
-        theta_2 = eta*(r*s_2_store(end,1)/K_B)*sqrt(f_21^2+f_22^2+f_23^2-f_21*f_22-f_21*f_23-f_22*f_23);
+        K_B2 = 0.8*313.8175/s_2(end);
+        K_B1 = 0.8*313.8175/s_1(end);
+
+        s_1_store = s_1(end);
+        s_2_store = s_2(end);
+
+        theta_2 = eta*(r*s_2_store/K_B2)*sqrt(f_21^2+f_22^2+f_23^2-f_21*f_22-f_21*f_23-f_22*f_23);
         phi_2 = atan2(3*(f_22-f_23),sqrt(3)*(f_22+f_23-2*f_21));
-        A = eta*s_1_store(end,1)*r*sqrt(f_11^2+f_12^2+f_13^2-f_11*f_12-f_11*f_13-f_12*f_13);
+        A = eta*s_1_store*r*sqrt(f_11^2+f_12^2+f_13^2-f_11*f_12-f_11*f_13-f_12*f_13);
         theta_2 = theta_2(end);
-        
         phi_1 = atan2(3*(f_12-f_13),sqrt(3)*(f_12+f_13-2*f_11));% deg2rad(60);
-        
-        Theta_1 = (A^2 - 2*cos(phi_1 - phi_2)*A*K_B*theta_2 + K_B^2*theta_2^2)^(1/2)/K_B;
-        Phi_1 = deg2rad(180) -  atan2((A*cos(phi_1) - K_B*theta_2*cos(phi_2))/sqrt(A^2 - 2*cos(phi_1 - phi_2)*A*K_B*theta_2 + K_B^2*theta_2^2), (A*sin(phi_1) - K_B*theta_2*sin(phi_2))/sqrt(A^2 - 2*cos(phi_1 - phi_2)*A*K_B*theta_2 + K_B^2*theta_2^2));
+        Theta_1 = (A^2 - 2*cos(phi_1 - phi_2)*A*K_B2*theta_2 + K_B2^2*theta_2^2)^(1/2)/K_B1;
+        Phi_1 = deg2rad(180) -  atan2((A*cos(phi_1) - K_B2*theta_2*cos(phi_2))/sqrt(A^2 - 2*cos(phi_1 - phi_2)*A*K_B2*theta_2 + K_B2^2*theta_2^2), (A*sin(phi_1) - K_B2*theta_2*sin(phi_2))/sqrt(A^2 - 2*cos(phi_1 - phi_2)*A*K_B2*theta_2 + K_B2^2*theta_2^2));
         theta_1 = Theta_1;
         phi_1 = real(Phi_1);
         theta_1 = theta_1(end);
-        
-        store_phi_1 = [store_phi_1; phi_1];
-        store_phi_2 = [store_phi_2; phi_2];
+
+        % geometry pre-process
+        theta_1 = linspace(0,theta_1,50);
+        theta_2 = linspace(0,theta_2,50);
         
         % geometry pre-process
         theta_1 = 0:theta_1/(length(L)-1):theta_1;
