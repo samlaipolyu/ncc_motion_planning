@@ -4,7 +4,7 @@ function euler = fwkeul_beta(x)
 L = 1:1:50; % mm
 K_A = 0.8550; % K_A = EA/L = 0.8*pi*(4.5^2-1.8^2)/50 = 0.8550 N/mm
 
-K_B = 5.0211;  % 0.8*313.8175/50 (EI/l=-M/theta_B) Nmmrad-1 //
+%K_B = 5.0211;  % 0.8*313.8175/50 (EI/l=-M/theta_B) Nmmrad-1 //
 r = 3.15;
 ds_2 = (x(4) + x(5) + x(6))/(3*K_A);
 s_2 = L + ds_2;
