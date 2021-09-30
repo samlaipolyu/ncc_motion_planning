@@ -19,6 +19,7 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 
 The above animations are showing a **redundant soft robot** can track the **same trajectory** in **different tip orientations** - if you can plan its **body motion** properly. This matlab file will help you to do that. You may customize the robot parameters, and extend it the differnt versions - robot sizes, number of segments, material properties, etc.
 
+If you want to use it for real-time applications, you may want to convert the code into C++/C. The computation will be really fast - even fast enough for a master-follower control. Please refer to my another repo: https://github.com/samlaipolyu/GesSo where I have used a Leap Motion controller to manipulate this soft robot using my gestures.
 
 <hr>
 
