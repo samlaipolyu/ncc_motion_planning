@@ -11,6 +11,17 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 
 <hr>
 
+
+#### Let's have a look at what you will get here!
+
+
+<img src="/img/gif1.gif" alt="drawing" width="300"/><img src="/img/gif2.gif" alt="drawing" width="300"/><img src="/img/gif3.gif" alt="drawing" width="300"/>
+
+The above animations are showing a **redundant soft robot** can track the **same trajectory** in **different tip orientations** - if you can plan its **body motion** properly. This matlab file will help you to do that. You may customize the robot parameters, and extend it the differnt versions - robot sizes, number of segments, material properties, etc.
+
+
+<hr>
+
 #### This file contains the matlab codes of
  - An executable `opt.m` file as the main function.
  - A function file `fwk.m` for the forward kinematics from cable input `x` to end-effector result `p_02`.
