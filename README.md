@@ -7,7 +7,7 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 
 #### Cite as
 - Jiewen Lai (2021). A MATLAB Simulator: Constrained Motion Planning of A Cable-Driven Soft Robot with Compressible Curvature Modeling. https://github.com/samlaipolyu/ncc_motion_planning.<br>
-- Jiewen Lai, Bo Lu, Qingxiang Zhao, and Henry K. Chu. "paper title," Journal Name. vol. xx. no. x. pp. xxxx-xxxx. 2021.
+- Jiewen Lai, Bo Lu, Qingxiang Zhao, and Henry K. Chu. "Constrained Motion Planning of A Cable-Driven Soft Robot with Compressible Curvature Modeling," Journal Name. vol. xx. no. x. pp. xxxx-xxxx. 2021.
 
 <hr>
 
@@ -16,6 +16,8 @@ e-mail: jw.lai[at]connect[dot]polyu[dot]hk
 
 
 <img src="/img/gif1.gif" alt="drawing" width="400"/><img src="/img/gif2.gif" alt="drawing" width="400"/><img src="/img/gif3.gif" alt="drawing" width="400"/>
+
+Youtube demo: https://youtu.be/Zb3cA3hTvKg
 
 The above animations are showing a **redundant soft robot** can track the **same trajectory** in **different tip orientations** - if you can plan its **body motion** properly. This matlab file will help you to do that. You may customize the robot parameters, and extend it the differnt versions - robot sizes, number of segments, material properties, etc.
 
