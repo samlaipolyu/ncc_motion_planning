@@ -2,7 +2,7 @@
 
 <hr>
 Author: Jiewen Lai, The Hong Kong Polytechnic University<br>
-e-mail: jw.lai[at]connect[dot]polyu[dot]hk
+e-mail: jw.lai [at] connect [dot] polyu [dot] hk
 <hr>
 
 #### Cite as
