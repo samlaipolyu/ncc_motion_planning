@@ -56,5 +56,8 @@ If you want to use it for real-time applications, you may want to convert the co
 - The image processing code is provided as `depth_cam_obsv.m`. It computes the 3D cooridinate of the POIs using a RealSense D435 depth camera.
 
 
+  #### Update on 29 Dec 2021, 1:21 AM, HKT
   
+  - The bending stiffness $K_{T,k}$ can be customized to be associated to the curvature length $s_k$.
+  - The axial stiffness $K_{a,k}$ can be customized to be associated to the initial estimation of the curvature length $s_k^{\dagger}$.
  
