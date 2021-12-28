@@ -1,6 +1,4 @@
 function [draw, tip, sim_angle] = drawAnimation(q,roi_loc)
-cbb = tab20;
-c = [cbb(5,:);cbb(5,:)];
 k = 10;
 p_00 = zeros(1,3);
 R_00 = eye(3);
@@ -24,15 +22,14 @@ d    = q(7);
 
 L = 1:1:50; % mm
 
- K_A1 = 0.8*pi*(4.5^2-1.8^2)/(50*(1+0.45*((f_11 + f_12 + f_13 + f_21 + f_22 + f_23))/(0.8*pi*(4.5^2-1.8^2))));
-   K_A2 = 0.8*pi*(4.5^2-1.8^2)/(50*(1+0.45*((f_21 + f_22 + f_23))/(0.8*pi*(4.5^2-1.8^2))));
- K_A = 0.8550; % K_A = EA/L = 0.8*pi*(4.5^2-1.8^2)/50 = 0.8550 N/mm
+K_A1 = 0.8*pi*(4.5^2-1.8^2)/(50*(1+0.45*((f_11 + f_12 + f_13 + f_21 + f_22 + f_23))/(0.8*pi*(4.5^2-1.8^2))));
+K_A2 = 0.8*pi*(4.5^2-1.8^2)/(50*(1+0.45*((f_21 + f_22 + f_23))/(0.8*pi*(4.5^2-1.8^2))));
+% K_A = 0.8550; % K_A = EA/L = 0.8*pi*(4.5^2-1.8^2)/50 = 0.8550 N/mm
 
 I = (pi/4)*(4.5^4-1.8^4); % 313.8175 mm^4
 K_B = 5.0211;  % 0.8*313.8175/50 (EI/l=-M/theta_B) Nmmrad-1 // 0.8MPA
 
 r = 3.15;
-
 
 ds_2 = (f_21 + f_22 + f_23)/(3*K_A2);
 s_2 = L + ds_2;
@@ -40,10 +37,10 @@ s_2 = L + ds_2;
 ds_1 = (f_11 + f_12 + f_13 + f_21 + f_22 + f_23)/(3*K_A1);
 s_1 = L + ds_1;
 
- K_B2 = 1.0*0.8*313.8175/s_2(end);
- K_B1 = 1.0*0.8*313.8175/s_1(end);
-     %  K_B2 = 0.8*313.8175/50;
-    %    K_B1 = 0.8*313.8175/50;
+K_B2 = 1.0*0.8*313.8175/s_2(end);
+K_B1 = 1.0*0.8*313.8175/s_1(end);
+%  K_B2 = 0.8*313.8175/50;
+%  K_B1 = 0.8*313.8175/50;
 
 s_1_store = s_1(end);
 s_2_store = s_2(end);
@@ -66,29 +63,15 @@ theta_1 = theta_1(end);
 theta_1 = linspace(0,theta_1,50);
 theta_2 = linspace(0,theta_2,50);
 
-
 x_01 = (s_1/theta_1) * (1-cos(theta_1))*cos(phi_1);
 y_01 = (s_1/theta_1) * (1-cos(theta_1))*sin(phi_1);
 z_01 = (s_1/theta_1) * sin(theta_1) + d;
 p_01 = [x_01; y_01; z_01];
 
+draw = figure(1);
 
-
-
-draw = figure(520);
-%movegui('west');
-
-
-plot3(x_01,y_01,z_01,'-','LineWidth',4,'color',c(1,:));hold on
+plot3(x_01,y_01,z_01,'-','LineWidth',4,'color','b');hold on
 xlabel('x [mm]');ylabel('y [mm]');zlabel('z [mm]');
-
-% plot the reference path ****************************************
-% tspan = 0:2*deg2rad(1):2*pi;
-% z_tip = 150*ones(1,length(tspan));
-% y_tip = 40*sign((cos(tspan))).*(sin(tspan)).*cos(tspan).^2;
-% x_tip = 40*sign(cos(tspan)).*cos(tspan).^2;
-% plot3(x_tip,y_tip,z_tip,'r--');
-% plot the reference path ****************************************
 
 for i = 1:1:50
     R_0b{i} = rotz(rad2deg(phi_1-phi_1));
@@ -121,7 +104,7 @@ x_02 = p_02(1,:);
 y_02 = p_02(2,:);
 z_02 = p_02(3,:);
 
-plot3(x_02,y_02,z_02,'-','LineWidth',4,'color',c(2,:));hold on
+plot3(x_02,y_02,z_02,'-','LineWidth',4,'color','r');hold on
 
 % Side view
 plot3(-ax*ones(1,length(x_02)),y_02,z_02,'-','LineWidth',4,'color',[0.8 0.8 0.8]);hold on
@@ -187,19 +170,6 @@ tri_z3_tip = [p_02(3,i), p_02(3,i)+k*R_02{i}(3,3)];
 plot3(tri_x1_tip,tri_y1_tip,tri_z1_tip,'r-','LineWidth',1);
 plot3(tri_x2_tip,tri_y2_tip,tri_z2_tip,'g-','LineWidth',1);
 plot3(tri_x3_tip,tri_y3_tip,tri_z3_tip,'b-','LineWidth',1);
-% p_02_prev = [p_02_prev p_02(:,end)];
-% plot3(p_02_prev(1,1:j),p_02_prev(2,1:j),p_02_prev(3,1:j),'-','linewidth',1,'color',[0.4940 0.1840 0.5560])
-% hold on
-% plot3(x_tip(1,:),y_tip(1,:),z_tip(1,:),'r-'); hold on
-
-% tspan = 0:2*pi/180:2*pi;
-% z_tip = 140*ones(1,length(tspan));
-% x_tip = 40*sign((cos(tspan))).*(sin(tspan)).*cos(tspan).^2;
-% y_tip = 40*sign(cos(tspan)).*cos(tspan).^2;
-% viaPoint = [x_tip; y_tip; z_tip];
-% plot3(x_tip,y_tip,z_tip,'r-');
-
-%plot3(-10,-20,140,'r.');
 
 sim_angle = rotm2eul(R_02{end});
 
@@ -214,58 +184,9 @@ zlim([0 250]);
 set(gca,'zdir','reverse')
 camproj('perspective')
 view([153 33]);
-%view([20 60]);
-%view([90 90])
 drawnow;
-%hold off
 
-
-% subplot(1,2,2)
-% plot3(x_01,y_01,z_01,'-','LineWidth',4,'color',[0.0265 0.6137 0.8135]);hold on
-% plot3(x_02,y_02,z_02,'-','LineWidth',4,'color',[0.9856 0.7372 0.2537]);hold on
-% plot3(rod_x,rod_y,rod_z,'k-','LineWidth',4);hold on
-% plot3(tri_x1_tip,tri_y1_tip,tri_z1_tip,'r-','LineWidth',2);
-% plot3(tri_x2_tip,tri_y2_tip,tri_z2_tip,'g-','LineWidth',2);
-% plot3(tri_x3_tip,tri_y3_tip,tri_z3_tip,'b-','LineWidth',2);
-% % plot3(x_tip,y_tip,z_tip,'r--');
-% axis equal
-% xlim([-ax ax]);
-% ylim([-ax ax]);
-% zlim([0 180]);
-% 
-% camproj('perspective')
-% view([0 80]);
-% box on
-% hold off
-
-
-
-%     figure(2)
-%
-%     if j > 1
-%         subplot(4,2,2)
-%         xlim([0 length(q)])
-%         t = toc;
-%         title('tip err [mm]')
-%         line([j-1,j],[x_tip(1,j-1)-p_02_prev(1,end-1),x_tip(1,j)-x_02(1,end)],'Color','r','LineWidth',1); hold on
-%
-%         subplot(4,2,4)
-%         xlim([0 length(q)]);
-%         line([j-1,j],[y_tip(1,j-1)-p_02_prev(2,end-1),y_tip(1,j)-y_02(1,end)],'Color','r','LineWidth',1); hold on
-%         subplot(4,2,6)
-%         xlim([0 length(q)]);
-%         line([j-1,j],[z_tip(1,j-1)-p_02_prev(3,end-1),z_tip(1,j)-z_02(1,end)],'Color','r','LineWidth',1); hold on
-%
-%         subplot(4,2,8)
-%         xlim([0 length(q)])
-%         line([j-1 j],[abs(sqrt(x_tip(1,j-1)^2+y_tip(1,j-1)^2+z_tip(1,j-1)^2)-norm(p_02_prev(:,end-1))),...
-%             abs(sqrt(x_tip(1,j).^2+y_tip(1,j)^2+z_tip(1,j)^2)-norm(p_02_prev(:,end)))],'Color','b','LineWidth',1); hold on
-%         xlabel('step')
-%         set(gcf,'color','w');
-%     end
-%     j = j + 1;
 set(gcf,'color','w');
-
 
 end
 
