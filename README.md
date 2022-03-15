@@ -6,8 +6,19 @@ e-mail: jw.lai [at] connect [dot] polyu [dot] hk
 <hr>
 
 #### Cite as
-- Jiewen Lai (2021). A MATLAB Simulator: Constrained Motion Planning of A Cable-Driven Soft Robot with Compressible Curvature Modeling. https://github.com/samlaipolyu/ncc_motion_planning.<br>
-- Jiewen Lai, Bo Lu, Qingxiang Zhao, and Henry K. Chu. "Constrained Motion Planning of A Cable-Driven Soft Robot with Compressible Curvature Modeling," IEEE Robotics and Automation Letters. 2022.
+
+```
+@article{lai2022constrained,
+  title={Constrained Motion Planning of A Cable-Driven Soft Robot With Compressible Curvature Modeling},
+  author={Lai, Jiewen and Lu, Bo and Zhao, Qingxiang and Chu, Henry},
+  journal={IEEE Robotics and Automation Letters},
+  volume={7},
+  number={2},
+  pages={4813--4820},
+  year={2022},
+  publisher={IEEE}
+}
+```
 
 <hr>
 
